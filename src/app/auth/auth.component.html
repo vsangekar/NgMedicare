@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>
+            Medicare
+        </title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="d-flex align-items-center">
+                    <img src="assets/Images/DoctorSymbol.png" alt="Medicare Logo" style="margin-right: 1rem; margin-top: 2rem;">
+                    <h2 style="margin-top: 2rem;">Welcome to Medicare</h2>
+                </div>
+                <div>
+                    <p style="font-family: 'Roboto', sans-serif;margin-left: 3.5rem;">Angular Application for Patient Role in Medicare Project</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <!-- div2 content -->
+                <div class="card">
+                  <div class="card-body">
+                    <!-- Your form content here -->
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                      <!-- Email input -->
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email">
+                        <!-- Display validation errors for email field -->
+                        <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" class="text-danger">
+                          <div *ngIf="loginForm.get('email')?.hasError('required')">Email is required</div>
+                          <div *ngIf="loginForm.get('email')?.hasError('email')">Please enter a valid email</div>
+                        </div>
+                      </div>
+                      <!-- Password input -->
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+                        <!-- Display validation errors for password field -->
+                        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="text-danger">
+                          <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
+                 </div>
+                      </div>
+                      <!-- Forgot password link -->
+                      <div class="form-group">
+                        <a href="/forgot-password">Forgot Password?</a>
+                      </div>
+                      <!-- Login button -->
+                      <button id="btnLogin" type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+                      <br><br>
+                      <hr>
+                      <small>Don't have an account? <a href="/register" id="btnRegister">Register</a> please</small>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </body>
+</html>
+
+  
+
+  
+  
+  
