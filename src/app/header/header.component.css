@@ -9,3 +9,7 @@ nav{
     font: size 1.5em;
     cursor:pointer;
 }
+.navbg
+{
+    background: linear-gradient(135deg, #0143a3, #0273d4);
+}

@@ -21,7 +21,7 @@ app-sidenav {
   left: 0rem;
   width: 60px;
   height: calc(100vh - 4rem); /* Subtract height of app-header */
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   background-color: white;
   overflow-x: hidden;
   white-space: nowrap;
