@@ -6,17 +6,17 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./sidenav.component.css'] // Changed styleUrl to styleUrls
 })
 export class SidenavComponent {
-  @Input() sideNavStatus:boolean=false;
+  @Input() sideNavStatus:boolean=true;
   list=[
     {
       number:'1',
-      name:'home',
-      icon: 'fa-solid fa-house',
+      name:'Dashboard',
+      icon: 'fa-solid fa-chart-line',
     },
     {
       number:'2',
-      name:'Analytics',
-      icon: 'fa-solid fa-chart-line',
+      name:'Appointment',
+      icon: 'fa-solid fa-user',
     },
   ];
 }
