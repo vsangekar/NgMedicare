@@ -3,9 +3,9 @@ nav{
 }
 
 .side-nav-button{
-    display:fixed;
-    width:100%;
-    top:0px;
-    height:4rem;
-    z-index:2;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font: size 1.5em;
+    cursor:pointer;
 }

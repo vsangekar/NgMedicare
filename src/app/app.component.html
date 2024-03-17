@@ -2,7 +2,7 @@
     <app-header (sideNavToggled)="sideNavStatus = $event;"></app-header>
     <main>
         <app-sidenav [sideNavStatus]="sideNavStatus"></app-sidenav>
-        <div class="display-area p-3"[ngClass]="{'display-area-shrink':sideNavStatus}">
+        <div class="display-area p-3" [ngClass]="{'display-area-shrink':sideNavStatus}">
             <p class="fs-1 fe-bold fst-italic">Main Display Area</p>
         </div>
     </main>
