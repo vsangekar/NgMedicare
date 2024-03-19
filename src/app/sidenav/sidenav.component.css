@@ -20,7 +20,7 @@
 }
 
 .nav-list-open .nav-list-item:hover{
-    background-color: lightblue;
+    background-color: #90d58f;
     border-radius: 10px;
 }
 
@@ -43,3 +43,4 @@ a{
     text-decoration:none;
     color: rgb(19, 9, 9);
 }
+

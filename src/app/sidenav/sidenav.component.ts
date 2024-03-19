@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./sidenav.component.css'] // Changed styleUrl to styleUrls
 })
 export class SidenavComponent {
-  @Input() sideNavStatus:boolean=true;
+  @Input() sideNavStatus:boolean=false;
   list=[
     {
       number:'1',

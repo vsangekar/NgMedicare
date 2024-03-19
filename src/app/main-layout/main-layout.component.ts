@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class MainLayoutComponent {
   title='HeaderSideNav';
-  sideNavStatus:boolean=true;
+  sideNavStatus:boolean=false;
 }
