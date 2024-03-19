@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth/authservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -7,13 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './auth.component.css'
 })
 export class AuthComponent {
-onSubmit()
- {
-    throw new Error('Method not implemented.');
-}
-  loginForm!: FormGroup;
+loginForm!: FormGroup;
 
-constructor(private formBuilder: FormBuilder) { }
+constructor(private formBuilder: FormBuilder, private authService :AuthService,private route:Router) { }
 
 ngOnInit() {
   this.loginForm = this.formBuilder.group({
@@ -21,4 +19,13 @@ ngOnInit() {
     password: ['', Validators.required]
   });
 }
+
+onSubmit()
+ {
+   this.authService.onLogin(this.loginForm).subscribe((res:any)=>{
+       localStorage.setItem('token',res.token);
+       this.route.navigateByUrl('/dashboard');
+   })
+}
+
 }

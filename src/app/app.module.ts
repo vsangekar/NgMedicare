@@ -12,6 +12,8 @@ import { HeaderComponent } from './component/header/header.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { AuthLayoutComponent } from './component/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './component/main-layout/main-layout.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DashboardInterceptor } from './intercepter/dashboard/dashboard.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,11 @@ import { MainLayoutComponent } from './component/main-layout/main-layout.compone
     ReactiveFormsModule 
   ],
   providers: [
-    provideClientHydration()
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DashboardInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
