@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
-import { RegisterComponent } from './register/register.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
+import { AuthComponent } from './component/auth/auth.component';
+import { RegisterComponent } from './component/register/register.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { AuthLayoutComponent } from './component/auth-layout/auth-layout.component';
 import { AppComponent } from './app.component';
-import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { MainLayoutComponent } from './component/main-layout/main-layout.component';
 
 
 const routes: Routes = [
