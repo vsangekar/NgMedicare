@@ -20,12 +20,18 @@ ngOnInit() {
   });
 }
 
-onSubmit()
- {
-   this.authService.onLogin(this.loginForm).subscribe((res:any)=>{
-       localStorage.setItem('token',res.token);
-       this.route.navigateByUrl('/dashboard');
-   })
+onSubmit() {
+  this.authService.onLogin(this.loginForm.value).subscribe(
+    (res: any) => {
+      localStorage.setItem('token', res.token);
+      this.route.navigateByUrl('/dashboard');
+    },
+    (error) => {
+      // Handle error appropriately
+      console.error('Error occurred:', error);
+      // Optionally display error message to user
+    }
+  );
 }
 
 }

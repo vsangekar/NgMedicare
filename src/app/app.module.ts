@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +13,6 @@ import { HeaderComponent } from './component/header/header.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { AuthLayoutComponent } from './component/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './component/main-layout/main-layout.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardInterceptor } from './intercepter/dashboard/dashboard.interceptor';
 
 @NgModule({
@@ -30,14 +30,16 @@ import { DashboardInterceptor } from './intercepter/dashboard/dashboard.intercep
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    HttpClientModule // Add HttpClientModule here
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: DashboardInterceptor,
       multi: true
-    }
+    },
+    provideHttpClient(withFetch()) // Add withFetch() here
   ],
   bootstrap: [AppComponent]
 })
