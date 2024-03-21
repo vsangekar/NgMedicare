@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { ToastrService } from 'ngx-toastr';
-import { TimeoutError } from 'rxjs';
 import { ToastrNotificationService } from '../../services/toastr/toastr-notification.service';
 
 @Component({
