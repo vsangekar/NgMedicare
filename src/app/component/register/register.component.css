@@ -72,6 +72,13 @@ label {
   .btn-primary:hover {
     background-color: #289728;
   }
+  .passport-photo {
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover; 
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+}
 
 body {
     background-color: #f0f2f5;
