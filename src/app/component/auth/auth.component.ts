@@ -27,9 +27,7 @@ onSubmit() {
       this.route.navigateByUrl('/dashboard');
     },
     (error) => {
-      // Handle error appropriately
       console.error('Error occurred:', error);
-      // Optionally display error message to user
     }
   );
 }

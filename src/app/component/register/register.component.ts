@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
+import { TimeoutError } from 'rxjs';
+import { ToastrNotificationService } from '../../services/toastr/toastr-notification.service';
 
 @Component({
   selector: 'app-register',
@@ -8,21 +11,25 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  registrationForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private sanitizer: DomSanitizer) { }
+  registerForm!: FormGroup<any>;
+  alertMessage: any;
+  constructor(private formBuilder: FormBuilder,private sanitizer: DomSanitizer, private toaster: ToastrNotificationService) { }
 
   ngOnInit(): void {
-    this.registrationForm = this.formBuilder.group({
+    this. registerForm= this.formBuilder.group({
       patientName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       gender: ['', Validators.required],
       age: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
-      isActive: [false]
+      isActive: [false],
+      password:['', Validators.required],
+      confirmPassword: ['', [Validators.required]]
     });
   }
+
   imageUrl: SafeUrl | undefined;
 
   onFileSelected(event: any) {
@@ -36,9 +43,11 @@ export class RegisterComponent {
     reader.readAsDataURL(file);
   }
   onSubmit() {
-    if (this.registrationForm.valid) {
-      // Here you can submit the form data to your backend service or handle it within the Angular application
-      console.log(this.registrationForm.value);
+    if (this.registerForm.valid) {
+      console.log(this.registerForm.value);
+      this.toaster.showInfo("All fields Inserted SuccessFully","success");
+    } else {
+      this.toaster.showError("All field are required","error!");
     }
   }
 }

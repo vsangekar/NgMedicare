@@ -14,6 +14,7 @@ import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { AuthLayoutComponent } from './component/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './component/main-layout/main-layout.component';
 import { DashboardInterceptor } from './intercepter/dashboard/dashboard.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DashboardInterceptor } from './intercepter/dashboard/dashboard.intercep
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule // Add HttpClientModule here
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {

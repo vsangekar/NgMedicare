@@ -4,73 +4,111 @@
     <title>Registration - Medicare</title>
 </head>
 <body>
-
-<div class="card">
-    <div class="card-body">
-        <h2 class="card-title">Registration Form</h2>
-        
-        <div class="form-row">
-            <div class="form-group col-md-10">
-                <label for="patientName">Patient Name</label>
-                <input type="text" id="patientName" class="form-control" placeholder="Enter patient name">
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <h2 class="card-title">Registration Form</h2>
+    
+                <div class="form-row">
+                    <div class="form-group col-md-10">
+                        <label for="patientName">Patient Name</label>
+                        <input type="text" id="patientName" formControlName="patientName" class="form-control" placeholder="Enter patient name">
+                        <div *ngIf="registerForm.get('patientName')?.invalid && (registerForm.get('patientName')?.dirty || registerForm.get('patientName')?.touched)" class="text-danger">
+                           Patient is Required
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="patientImage">Upload</label>
+                        <input type="file" (change)="onFileSelected($event)" id="uploadInput" class="form-control" accept="image/*">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image">
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter email">
+                        <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)" class="text-danger">
+                            Email is Required
+                        </div>
+                    </div>
+    
+                    <div class="form-group col-md-6">
+                        <label for="gender">Gender</label>
+                        <select id="gender" formControlName="gender" class="form-control">
+                            <option value="" disabled>Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div *ngIf="registerForm.get('gender')?.invalid && (registerForm.get('gender')?.dirty || registerForm.get('gender')?.touched)" class="text-danger">
+                            Gender is required.
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" formControlName="age" class="form-control" placeholder="Enter age">
+                        <div *ngIf="registerForm.get('age')?.invalid && (registerForm.get('age')?.dirty || registerForm.get('age')?.touched)" class="text-danger">
+                            Age is required.
+                        </div>
+                    </div>
+    
+                    <div class="form-group col-md-6">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="tel" id="phoneNumber" formControlName="phoneNumber" class="form-control" placeholder="Enter phone number">
+                        <div *ngIf="registerForm.get('phoneNumber')?.invalid && (registerForm.get('phoneNumber')?.dirty || registerForm.get('phoneNumber')?.touched)" class="text-danger">
+                            Phone number is required.
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" formControlName="password" class="form-control" placeholder="Enter Password">
+                        <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" class="text-danger">
+                            Password is required.
+                        </div>
+                    </div>
+    
+                    <div class="form-group col-md-6">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control" placeholder="Enter Confirm Password">
+                        <div *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)" class="text-danger">
+                            Confirm Password is required.
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="address">Address</label>
+                        <textarea id="address" formControlName="address" class="form-control" placeholder="Enter address"></textarea>
+                        <div *ngIf="registerForm.get('address')?.invalid && (registerForm.get('address')?.dirty || registerForm.get('address')?.touched)" class="text-danger">
+                            Address is required.
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            <ng-container *ngIf="alertMessage">
+                <div class="alert alert-danger" role="alert">
+                  <strong>Error!</strong> {{ alertMessage }}
+                </div>
+              </ng-container>
+            <hr>
+            <div>
+                <h6>Already Register? Go Back to <a href="/"> Login</a></h6>
             </div>
-
-           
         </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label for="patientImage">Upload</label>
-                <input type="file" id="uploadInput" class="form-control" accept="image/*">
-            </div>
-            <div class="form-group col-md-6">
-                <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image">
-            </div>
-     
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input type="email" id="email" class="form-control" placeholder="Enter email">
-            </div>
-
-            <div class="form-group col-md-6">
-                <label for="gender">Gender</label>
-                <select id="gender" class="form-control">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="age">Age</label>
-                <input type="number" id="age" class="form-control" placeholder="Enter age">
-            </div>
-
-            <div class="form-group col-md-6">
-                <label for="phoneNumber">Phone Number</label>
-                <input type="tel" id="phoneNumber" class="form-control" placeholder="Enter phone number">
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="address">Address</label>
-                <input type="textarea" id="address" class="form-control" placeholder="Enter address">
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Register</button>
     </div>
-    <hr>
-    <div>
-        <h6>Already Register? Go Back to <a href="/"> Login</a></h6>
-    </div>
-</div>
-
 </body>
 </html>

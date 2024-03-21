@@ -1,23 +1,21 @@
+/* Card styling */
 .card {
     max-width: 700px; /* Adjust as needed */
     margin: 2rem auto;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.56);
-    background-color: white;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1); /* Adjust shadow */
+    background-color: #ffffff;
 }
 
 .card-body {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-}
-body {
-    background-color: #f0f2f5; 
+    gap: 1.5rem; 
 }
 
 .card-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem; 
     color: #33a532;
     margin-bottom: 1rem;
     text-align: center;
@@ -25,7 +23,8 @@ body {
 
 .form-row {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap; 
+    gap: 1.5rem; 
 }
 
 .form-group {
@@ -35,18 +34,25 @@ body {
 }
 
 label {
-    font-size: 0.8rem;
+    font-size: 0.9rem; 
     color: #333;
     margin-bottom: 0.5rem;
 }
 
 .form-control {
-    font-size: 0.7rem;
-    padding: 0.60rem;
+    font-size: 0.9rem;
+    padding: 0.7rem; 
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 0.4rem;
+    border-radius: 6px; 
+    margin-bottom: 0.8rem; 
+    transition: border-color 0.3s ease;
 }
+
+.form-control:focus {
+    outline: none;
+    border-color: #33a532; 
+}
+
 
 .btn {
     padding: 0.5rem 1rem;
@@ -55,14 +61,20 @@ label {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    align-self: flex-end; /* Align button to the end of the container */
-}
-
-.btn-primary {
+    float: right;
+  }
+  
+  .btn-primary {
     background-color: #33a532;
     color: white;
-}
-
-.btn-primary:hover {
+  }
+  
+  .btn-primary:hover {
     background-color: #289728;
+  }
+
+body {
+    background-color: #f0f2f5;
+    font-family: Arial, sans-serif; 
+    margin: 0; 
 }
