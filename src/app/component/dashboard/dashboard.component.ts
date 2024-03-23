@@ -1,16 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit  {
-  userEmail: string | null = null; // Initialize userEmail as null or any default value
+export class DashboardComponent implements OnInit {
+  userName: string | null = null;
 
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    this.userEmail = localStorage.getItem('userEmail'); // Retrieve userEmail from localStorage
+    if (isPlatformBrowser(this.platformId)) {
+      this.userName = localStorage.getItem('userName');
+    }
   }
 }

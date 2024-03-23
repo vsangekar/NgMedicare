@@ -15,7 +15,9 @@ import { AuthLayoutComponent } from './component/auth-layout/auth-layout.compone
 import { MainLayoutComponent } from './component/main-layout/main-layout.component';
 import { DashboardInterceptor } from './intercepter/dashboard/dashboard.interceptor';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+
 
 
 @NgModule({
@@ -36,7 +38,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     ReactiveFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule 
+    BrowserAnimationsModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground:true,
+    }),
   ],
   providers: [
     {

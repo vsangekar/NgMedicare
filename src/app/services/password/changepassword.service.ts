@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class ChangepasswordService {
 
   constructor(private http:HttpClient) { }
 
   onLogin(obj :any): Observable<any>{
-    return this.http.post('https://localhost:7187/api/auth/login', obj);
+    return this.http.post('https://localhost:7187/api/auth/change-password', obj);
   }
 }
