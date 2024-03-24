@@ -12,47 +12,45 @@
         </button>
         <ul class="dropdown-menu dropdown-menu-dark">
             <li><a class="dropdown-item" (click)="open(content)">Change password</a></li>
-            <li><a href="#" class="dropdown-item">Logout</a></li>
-
-
+            <a class="dropdown-item" (click)="logout()">Logout</a>
         </ul>
     </div>
 </nav>
-
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      <h4 class="modal-title" id="modal-basic-title">Change Password</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
+      <form [formGroup]="passwordForm">
         <div class="mb-3">
-            <label for="newPassword">New Password</label>
-            <div class="input-group">
-                <input type="{{ showNewPassword ? 'text' : 'password' }}" id="newPassword" class="form-control"
-                    name="newPassword" placeholder="New Password">
-                <button class="btn btn-outline-secondary" (click)="toggleShowPassword('newPassword')" type="button">
-                    <i class="fas" [ngClass]="{'fa-eye': !showNewPassword, 'fa-eye-slash': showNewPassword}"></i>
-                </button>
-            </div>
+          <label for="newPassword">New Password</label>
+          <div class="input-group">
+            <input type="{{ showNewPassword ? 'text' : 'password' }}" id="newPassword" class="form-control" formControlName="newPassword" placeholder="New Password">
+            <button class="btn btn-outline-secondary" (click)="toggleShowPassword('newPassword')" type="button">
+              <i class="fas" [ngClass]="{'fa-eye': !showNewPassword, 'fa-eye-slash': showNewPassword}"></i>
+            </button>
+          </div>
+          <div *ngIf="passwordForm.get('newPassword')?.invalid && (passwordForm.get('newPassword')?.dirty || passwordForm.get('newPassword')?.touched)">
+            <small class="text-danger" *ngIf="passwordForm.get('newPassword')?.errors?.['required']">New password is required.</small>
+          </div>
         </div>
-
-        <!-- Confirm Password -->
         <div class="mb-3">
-            <label for="confirmPassword">Confirm Password</label>
-            <div class="input-group">
-                <input type="{{ showConfirmPassword ? 'text' : 'password' }}" id="confirmPassword" class="form-control"
-                    name="confirmPassword" placeholder="Confirm Password">
-                <button class="btn btn-outline-secondary" (click)="toggleShowPassword('confirmPassword')" type="button">
-                    <i class="fas"
-                        [ngClass]="{'fa-eye': !showConfirmPassword, 'fa-eye-slash': showConfirmPassword}"></i>
-                </button>
-            </div>
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-group">
+            <input type="{{ showConfirmPassword ? 'text' : 'password' }}" id="confirmPassword" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password">
+            <button class="btn btn-outline-secondary" (click)="toggleShowPassword('confirmPassword')" type="button">
+              <i class="fas" [ngClass]="{'fa-eye': !showConfirmPassword, 'fa-eye-slash': showConfirmPassword}"></i>
+            </button>
+          </div>
+          <div *ngIf="passwordForm.get('confirmPassword')?.invalid && (passwordForm.get('confirmPassword')?.dirty || passwordForm.get('confirmPassword')?.touched)">
+            <small class="text-danger" *ngIf="passwordForm.get('confirmPassword')?.errors?.['required']">Confirm password is required.</small>
+            <small class="text-danger" *ngIf="passwordForm.get('confirmPassword')?.errors?.['passwordMismatch']">Passwords do not match.</small>
+          </div>
         </div>
-
-
-
+      </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); changePassword(newPassword.value, confirmPassword.value)">Change Password</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); changePassword(passwordForm.value)" [disabled]="passwordForm.invalid">Submit</button>
     </div>
-</ng-template>
+    </ng-template>

@@ -25,22 +25,6 @@ export class AuthComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.ngxService.start(); // start foreground spinner of the master loader with 'default' taskId
-    // Stop the foreground loading after 5s
-    setTimeout(() => {
-      this.ngxService.stop(); // stop foreground spinner of the master loader with 'default' taskId
-    }, 5000);
-
-    // OR
-    this.ngxService.startBackground("do-background-things");
-    // Do something here...
-    this.ngxService.stopBackground("do-background-things");
-
-    this.ngxService.startLoader("loader-01"); // start foreground spinner of the loader "loader-01" with 'default' taskId
-    // Stop the foreground loading after 5s
-    setTimeout(() => {
-      this.ngxService.stopLoader("loader-01"); // stop foreground spinner of the loader "loader-01" with 'default' taskId
-    }, 5000);
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -56,12 +40,12 @@ export class AuthComponent implements OnInit {
       (res: any) => {
         if (isPlatformBrowser(this.platformId)) {
           localStorage.setItem('token', res.token);
+          console.log(res.Email);
         }
         this.route.navigateByUrl('/dashboard');
      
       },
       (error) => {
-        // Handle error appropriately
         console.error('Error occurred:', error);
         this.toastrNotificationService.showError("Please enter correct Email or Password!", "Error!");
       }
@@ -77,6 +61,7 @@ export class AuthComponent implements OnInit {
           console.log(decodedToken);
           this.userName = decodedToken.Username;
           localStorage.setItem('userName', this.userName);
+          localStorage.setItem('email', decodedToken.Email);
         } catch (error) {
           console.error('Error decoding token:', error);
         }

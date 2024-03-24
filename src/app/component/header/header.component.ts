@@ -1,13 +1,18 @@
-import { Component, EventEmitter, Output, TemplateRef,inject } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef,inject } from '@angular/core';
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrNotificationService } from '../../services/toastr/toastr-notification.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangepasswordService } from '../../services/password/changepassword.service';
+import { LogoutService } from '../../services/logout/logout.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'] // Changed styleUrl to styleUrls
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  changePasswordForm!: FormGroup;
   private modalService = inject(NgbModal);
 	closeResult = '';
   @Output() sideNavToggled = new EventEmitter<boolean>();
@@ -18,28 +23,50 @@ export class HeaderComponent {
   currentPassword: any;
   newPassword: any;
   confirmPassword: any;
-  constructor(private toastrNotificationService: ToastrNotificationService){
-    
+  passwordForm: FormGroup;
+  constructor(private toastrNotificationService: ToastrNotificationService, private changepasswordservice: ChangepasswordService, private logoutservice: LogoutService, private route: Router){
+    this.passwordForm = new FormGroup({
+      newPassword: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required)
+    });
   }
 
-  ngOnInit():void{}
+  ngOnInit():void{
+
+  }
 
   SideNavToggled(){
     this.menuStatus=!this.menuStatus;
     this.sideNavToggled.emit(this.menuStatus);
   }
-  changePassword(newPassword: string, confirmPassword: string): void {
-    const token = localStorage.getItem('token');
-    let email: string = "";
-    let password=newPassword;
-    if(password!= confirmPassword){
+  changePassword(formValue: any) {
+    const newPassword = formValue.newPassword;
+    const confirmPassword = formValue.confirmPassword;
+  
+    // Check if passwords match
+    if (newPassword !== confirmPassword) {
       this.toastrNotificationService.showError("Password and Confirm password should be same!", "Error!");
+      return; 
     }
-    if (token) {
-      const decodedToken: any = jwt_decode(token);
-      email = decodedToken.email; 
+
+    const email = localStorage.getItem('email');
+    const token = localStorage.getItem('token');
+  
+    if (!email || !token) {
+      this.toastrNotificationService.showError("Email or token not found!", "Error!");
+      return; 
     }
-  }
+
+    this.changepasswordservice.onChangePassword({ email, token, newPassword }).subscribe(
+      (res: any) => {
+        this.toastrNotificationService.showError("Password changed Successfully!", "Success!");
+      },
+      (error) => {
+        console.error('Error occurred:', error);
+        this.toastrNotificationService.showError("Please enter correct Email or Password!", "Error!");
+      }
+    );
+  }  
 
   toggleShowPassword(field: string): void {
    if (field === 'newPassword') {
@@ -69,6 +96,21 @@ export class HeaderComponent {
 				return `with: ${reason}`;
 		}
 	}
+
+  logout() {
+    this.logoutservice.logout().subscribe(
+      () => {
+        // Remove token from local storage
+        localStorage.removeItem('token');
+        
+        // Navigate to the home page or any other desired route
+        this.route.navigateByUrl('/');
+      },
+      (error) => {
+        this.toastrNotificationService.showError("Something Went Wrong", "Error!");
+      }
+    );
+  }
 }
 
 function jwt_decode(token: string): any {

@@ -50,7 +50,7 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
       useClass: DashboardInterceptor,
       multi: true
     },
-    provideHttpClient(withFetch()) // Add withFetch() here
+    provideHttpClient(withFetch()) 
   ],
   bootstrap: [AppComponent]
 })

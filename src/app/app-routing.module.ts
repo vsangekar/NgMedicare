@@ -4,8 +4,8 @@ import { AuthComponent } from './component/auth/auth.component';
 import { RegisterComponent } from './component/register/register.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthLayoutComponent } from './component/auth-layout/auth-layout.component';
-import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './component/main-layout/main-layout.component';
+import { RouteguardService } from './services/gaurd/routeguard.service';
 
 const routes: Routes = [
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent }
+      { path: 'dashboard', component: DashboardComponent , canActivate: [RouteguardService] }
     ]
   }
 ];
