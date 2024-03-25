@@ -46,8 +46,18 @@
               <div class="form-group">
                 <a href="/forgot-password">Forgot Password?</a>
               </div>
+              
               <button id="btnLogin" type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
-              <br><br>
+              
+              <div class="separator">
+                OR
+              </div>
+              <div class="text-center">
+                <button class="btn googlebtn" type="submit">
+                  <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" style="width: 20px; height: 20px; margin-right: 5px;">
+                  Sign In with Google
+                </button>
+              </div>
               <hr>
               <small>Don't have an account? <a href="/register" id="btnRegister">Register Here</a></small>
             </form>
@@ -59,4 +69,5 @@
   <div>
   </div>
 </body>
+
 </html>
