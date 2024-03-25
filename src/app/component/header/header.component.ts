@@ -60,12 +60,12 @@ export class HeaderComponent implements OnInit {
     }
 
     this.changepasswordservice.onChangePassword({ email, oldPassword, newPassword }).subscribe(
-      (res: any) => {
-        this.toastrNotificationService.showError("Password changed Successfully!", "Success!");
+      (obj: any) => {
+        this.toastrNotificationService.showError(obj, "Success!");
       },
       (error) => {
         console.error('Error occurred:', error);
-        this.toastrNotificationService.showError("Please enter correct Email or Password!", "Error!");
+        this.toastrNotificationService.showError('Error occurred:',error);
       }
     );
   }  

@@ -47,7 +47,7 @@ export class AuthComponent implements OnInit {
       },
       (error) => {
         console.error('Error occurred:', error);
-        this.toastrNotificationService.showError("Please enter correct Email or Password!", "Error!");
+        this.toastrNotificationService.showError("Error", error);
       }
     );
   }
