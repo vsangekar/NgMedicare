@@ -24,6 +24,18 @@
     <div class="modal-body">
       <form [formGroup]="passwordForm">
         <div class="mb-3">
+          <label for="oldPassword">OldPassword</label>
+          <div class="input-group">
+            <input type="{{ showOldPassword ? 'text' : 'password' }}" id="oldPassword" class="form-control" formControlName="oldPassword" placeholder="old Password">
+            <button class="btn btn-outline-secondary" (click)="toggleShowPassword('oldPassword')" type="button">
+              <i class="fas" [ngClass]="{'fa-eye': !showNewPassword, 'fa-eye-slash': showNewPassword}"></i>
+            </button>
+          </div>
+          <div *ngIf="passwordForm.get('oldPassword')?.invalid && (passwordForm.get('oldPassword')?.dirty || passwordForm.get('oldPassword')?.touched)">
+            <small class="text-danger" *ngIf="passwordForm.get('oldPassword')?.errors?.['required']">Old password is required.</small>
+          </div>
+        </div>
+        <div class="mb-3">
           <label for="newPassword">New Password</label>
           <div class="input-group">
             <input type="{{ showNewPassword ? 'text' : 'password' }}" id="newPassword" class="form-control" formControlName="newPassword" placeholder="New Password">

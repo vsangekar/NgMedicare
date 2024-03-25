@@ -24,10 +24,12 @@ export class HeaderComponent implements OnInit {
   newPassword: any;
   confirmPassword: any;
   passwordForm: FormGroup;
+  showOldPassword: any;
   constructor(private toastrNotificationService: ToastrNotificationService, private changepasswordservice: ChangepasswordService, private logoutservice: LogoutService, private route: Router){
     this.passwordForm = new FormGroup({
       newPassword: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+      confirmPassword: new FormControl('', Validators.required),
+      oldPassword: new FormControl('', Validators.required)
     });
   }
 
@@ -42,8 +44,8 @@ export class HeaderComponent implements OnInit {
   changePassword(formValue: any) {
     const newPassword = formValue.newPassword;
     const confirmPassword = formValue.confirmPassword;
-  
-    // Check if passwords match
+    const oldPassword = formValue.oldPassword
+
     if (newPassword !== confirmPassword) {
       this.toastrNotificationService.showError("Password and Confirm password should be same!", "Error!");
       return; 
@@ -57,7 +59,7 @@ export class HeaderComponent implements OnInit {
       return; 
     }
 
-    this.changepasswordservice.onChangePassword({ email, token, newPassword }).subscribe(
+    this.changepasswordservice.onChangePassword({ email, oldPassword, newPassword }).subscribe(
       (res: any) => {
         this.toastrNotificationService.showError("Password changed Successfully!", "Success!");
       },
@@ -69,12 +71,15 @@ export class HeaderComponent implements OnInit {
   }  
 
   toggleShowPassword(field: string): void {
-   if (field === 'newPassword') {
+    if (field === 'oldPassword') {
+      this.showOldPassword = !this.showOldPassword;
+    } else if (field === 'newPassword') {
       this.showNewPassword = !this.showNewPassword;
     } else if (field === 'confirmPassword') {
       this.showConfirmPassword = !this.showConfirmPassword;
     }
   }
+  
   open(content: TemplateRef<any>) {
 		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
 			(result) => {
@@ -100,10 +105,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.logoutservice.logout().subscribe(
       () => {
-        // Remove token from local storage
         localStorage.removeItem('token');
-        
-        // Navigate to the home page or any other desired route
         this.route.navigateByUrl('/');
       },
       (error) => {
