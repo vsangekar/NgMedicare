@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common'; // Import isPlatformBrowser
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,13 +8,19 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) { }
 
-  onLogin(obj :any): Observable<any>{
+  onLogin(obj: any): Observable<any> {
     return this.http.post('https://localhost:7187/api/auth/login', obj);
   }
+
   isLoggedIn(): boolean {
-    // Check if token is present in local storage or any other method to validate authentication
-    return !!localStorage.getItem('token');
+    if (isPlatformBrowser(this.platformId)) {
+      // Check if token is present in local storage
+      const token = localStorage.getItem('token');
+      return !!token; // Return true if token exists, false otherwise
+    }
+    return false; // Return false if not in browser platform
   }
 }
+

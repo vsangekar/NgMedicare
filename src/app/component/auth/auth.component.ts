@@ -29,10 +29,6 @@ export class AuthComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.getUserNameFromToken();
-    }
   }
 
   onSubmit() {
@@ -40,14 +36,13 @@ export class AuthComponent implements OnInit {
       (res: any) => {
         if (isPlatformBrowser(this.platformId)) {
           localStorage.setItem('token', res.token);
-          console.log(res.Email);
+          this.getUserNameFromToken();
         }
         this.route.navigateByUrl('/dashboard');
      
       },
       (error) => {
-        console.error('Error occurred:', error);
-        this.toastrNotificationService.showError("Error", error);
+        this.toastrNotificationService.showError("Incorrect UserName or Password", "Error");
       }
     );
   }
@@ -58,9 +53,7 @@ export class AuthComponent implements OnInit {
       if (token) {
         try {
           const decodedToken = JSON.parse(atob(token.split(".")[1]));
-          console.log(decodedToken);
-          this.userName = decodedToken.Username;
-          localStorage.setItem('userName', this.userName);
+          localStorage.setItem('userName', decodedToken.sub);
           localStorage.setItem('email', decodedToken.Email);
         } catch (error) {
           console.error('Error decoding token:', error);
