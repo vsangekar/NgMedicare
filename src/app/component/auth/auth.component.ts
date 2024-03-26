@@ -12,6 +12,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
+  showPassword: boolean = false;
   loginForm!: FormGroup;
   userName: string = "";
 
@@ -60,5 +61,9 @@ export class AuthComponent implements OnInit {
         }
       }
     }
+  }
+
+  toggleShowPassword(): void {
+    this.showPassword = !this.showPassword;
   }
 }

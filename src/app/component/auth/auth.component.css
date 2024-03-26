@@ -111,4 +111,13 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); 
     border-radius: 8px;
   }
+  .btneye{
+    background-color: #ffffff; /* Background color */
+    height: 3.1rem;
+
+  }
+  .fas.fa-eye {
+    color: #939e96; 
+  }
+
   
