@@ -15,7 +15,7 @@ export class LogoutService {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
-      return this.http.post('https://localhost:7187/api/auth/logout', {}, { headers: headers });
+      return this.http.post('https://api.vikrantmedicare.co.in/api/auth/logout', {}, { headers: headers });
     } else {
       return new Observable(observer => {
         observer.error('Token not found in local storage');

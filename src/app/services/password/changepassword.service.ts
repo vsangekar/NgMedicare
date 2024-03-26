@@ -18,7 +18,7 @@ export class ChangepasswordService {
     });
     const options = { headers };
   
-    return this.http.post('https://localhost:7187/api/auth/change-password', obj, options)
+    return this.http.post('https://api.vikrantmedicare.co.in/api/auth/change-password', obj, options)
   
   }
 }

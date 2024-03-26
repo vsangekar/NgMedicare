@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   onLogin(obj: any): Observable<any> {
-    return this.http.post('https://localhost:7187/api/auth/login', obj);
+    return this.http.post('https://api.vikrantmedicare.co.in/api/auth/login', obj);
   }
 
   isLoggedIn(): boolean {
