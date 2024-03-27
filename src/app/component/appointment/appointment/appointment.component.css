@@ -1,0 +1,48 @@
+.container {
+  margin-top: 25px;
+}
+
+.card {
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+
+.card-header {
+  background-color:  #33a532;
+  color: #fff;
+  border-radius: 15px 15px 0 0;
+}
+
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #cedad1;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+  color: #33a532;
+}
+
+button[type="submit"] {
+  float:right ;
+  background-color:  #33a532;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button[type="submit"]:hover {
+  background-color: #33a532;
+}

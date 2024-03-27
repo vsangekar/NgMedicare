@@ -19,8 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AppointmentComponent } from './component/appointment/appointment/appointment.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
