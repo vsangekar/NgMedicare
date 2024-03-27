@@ -14,7 +14,7 @@ export class RouteguardService implements CanActivate {
       return true;
     } else {
       // Redirect to login page if not logged in
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/auth');
       return false;
     }
   }

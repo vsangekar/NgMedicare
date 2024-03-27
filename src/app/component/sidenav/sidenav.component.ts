@@ -12,11 +12,13 @@ export class SidenavComponent {
       number:'1',
       name:'Dashboard',
       icon: 'fa-solid fa-chart-line',
+      link:'/dashboard',
     },
     {
       number:'2',
       name:'Appointment',
       icon: 'fa-solid fa-user',
+      link:'/appointment',
     },
-  ];
+  ]
 }

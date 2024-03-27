@@ -6,13 +6,16 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthLayoutComponent } from './component/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './component/main-layout/main-layout.component';
 import { RouteguardService } from './services/gaurd/routeguard.service';
+import { AppointmentComponent } from './component/appointment/appointment/appointment.component';
+
 
 const routes: Routes = [
   {
-    path: '',
+     path: '',
     component: AuthLayoutComponent,
     children: [
-      { path: '', component: AuthComponent },
+      { path: '', redirectTo: 'auth', pathMatch: 'full' },
+      { path: 'auth', component: AuthComponent },
       { path: 'register', component: RegisterComponent }
     ]
   },
@@ -20,9 +23,10 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent , canActivate: [RouteguardService] }
+      { path: 'dashboard', component: DashboardComponent, canActivate: [RouteguardService] },
+      { path: 'appointment', component: AppointmentComponent }
     ]
-  }
+  },
 ];
 
 @NgModule({

@@ -17,6 +17,7 @@ import { DashboardInterceptor } from './intercepter/dashboard/dashboard.intercep
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { AppointmentComponent } from './component/appointment/appointment/appointment.component';
 
 
 
@@ -29,7 +30,8 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     HeaderComponent,
     SidenavComponent,
     AuthLayoutComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,

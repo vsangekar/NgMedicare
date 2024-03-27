@@ -120,4 +120,12 @@
     color: #939e96; 
   }
 
+  @media only screen and (max-width: 768px) {
+    .card {
+      float: none;
+      margin-right: auto; 
+      margin-left: auto; 
+      margin-top: 3rem; 
+    }
+  }
   
