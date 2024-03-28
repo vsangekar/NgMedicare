@@ -11,7 +11,7 @@
               <div class="col-md-6">
                 <label for="doctor">Doctor</label>
                 <select id="doctor" class="form-control" formControlName="doctorId">
-                  <option *ngFor="let doctor of doctors" [value]="doctor.id">{{ doctor.name }}</option>
+                  <option *ngFor="let doctor of doctors" [value]="doctor">{{ doctor}}</option>
                 </select>
                 <div *ngIf="appointmentForm.get('doctorId')?.invalid && (appointmentForm.get('doctorId')?.dirty || appointmentForm.get('doctorId')?.touched)">
                   <div *ngIf="appointmentForm.get('doctorId')?.errors?.['required']">Doctor is required</div>
@@ -21,7 +21,7 @@
               <div class="col-md-6">
                 <label for="patient">Patient</label>
                 <select id="patient" class="form-control" formControlName="patientId">
-                  <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.name }}</option>
+                  <option *ngFor="let patient of patients" [value]="patient.id">{{ patient}}</option>
                 </select>
                 <div *ngIf="appointmentForm.get('patientId')?.invalid && (appointmentForm.get('patientId')?.dirty || appointmentForm.get('patientId')?.touched)">
                   <div *ngIf="appointmentForm.get('patientId')?.errors?.['required']">Patient is required</div>
