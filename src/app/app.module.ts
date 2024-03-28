@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AppointmentComponent } from './component/appointment/appointment/appointment.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AppointmentComponent } from './component/appointment/appointment/appoin
       useClass: DashboardInterceptor,
       multi: true
     },
-    provideHttpClient(withFetch()) 
+    provideHttpClient(withFetch()),
+    provideAnimationsAsync() 
   ],
   bootstrap: [AppComponent]
 })
