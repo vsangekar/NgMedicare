@@ -46,3 +46,12 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #33a532;
 }
+
+.full-width {
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-right: 10px; 
+}

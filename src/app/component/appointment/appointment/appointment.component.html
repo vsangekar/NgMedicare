@@ -9,83 +9,22 @@
           <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-md-6">
-                <label for="doctor">Doctor</label>
-                <select id="doctor" class="form-control" formControlName="doctorId">
-                  <option *ngFor="let doctor of doctors" [value]="doctor">{{ doctor}}</option>
-                </select>
+                <mat-form-field class="full-width">
+                  <mat-label>Doctor</mat-label>
+                  <mat-select formControlName="doctorId">
+                    <mat-option *ngFor="let doctor of doctors" [value]="doctor">{{ doctor }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
                 <div *ngIf="appointmentForm.get('doctorId')?.invalid && (appointmentForm.get('doctorId')?.dirty || appointmentForm.get('doctorId')?.touched)">
                   <div *ngIf="appointmentForm.get('doctorId')?.errors?.['required']">Doctor is required</div>
                 </div>
               </div>
 
               <div class="col-md-6">
-                <label for="patient">Patient</label>
-                <select id="patient" class="form-control" formControlName="patientId">
-                  <option *ngFor="let patient of patients" [value]="patient.id">{{ patient}}</option>
-                </select>
-                <div *ngIf="appointmentForm.get('patientId')?.invalid && (appointmentForm.get('patientId')?.dirty || appointmentForm.get('patientId')?.touched)">
-                  <div *ngIf="appointmentForm.get('patientId')?.errors?.['required']">Patient is required</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6">
-                <label for="symptoms">Medical Symptoms</label>
-                <textarea id="symptoms" class="form-control" formControlName="symptoms"></textarea>
-                <div *ngIf="appointmentForm.get('symptoms')?.invalid && (appointmentForm.get('symptoms')?.dirty || appointmentForm.get('symptoms')?.touched)">
-                  <div *ngIf="appointmentForm.get('symptoms')?.errors?.['required']">At least one symptom is required</div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <label for="appointmentDate">Appointment Date</label>
-                <div class="input-group">
-                  <input
-                    id="appointmentDate"
-                    class="form-control"
-                    placeholder="yyyy-mm-dd"
-                    formControlName="appointmentDate"
-                    ngbDatepicker
-                    #d="ngbDatepicker"
-                  />
-                  <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
-                </div>
-                <div *ngIf="appointmentForm.get('appointmentDate')?.invalid && (appointmentForm.get('appointmentDate')?.dirty || appointmentForm.get('appointmentDate')?.touched)">
-                  <div *ngIf="appointmentForm.get('appointmentDate')?.errors?.['required']">Appointment date is required</div>
-                </div>
-              </div>
-              
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <label>Select Appointment Time</label>
-                <div class="form-group row d-flex flex-wrap">
-                  <ng-container *ngFor="let time of appointmentTimes; let i = index">
-                    <div id="time{{i+1}}" class="col-2 border appointment-time">
-                      <input type="radio" [value]="time" formControlName="appointmentTime" id="time{{i+1}}">
-                      <label for="time{{i+1}}">{{ time }}</label>
-                    </div>
-                  </ng-container>
-                </div>
-                <div *ngIf="appointmentForm.get('appointmentTime')?.invalid && (appointmentForm.get('appointmentTime')?.dirty || appointmentForm.get('appointmentTime')?.touched)">
-                  <div *ngIf="appointmentForm.get('appointmentTime')?.errors?.['required']">Appointment time is required</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <label for="note">Note</label>
-                <textarea id="note" class="form-control" formControlName="note"></textarea>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <label for="fees">Appointment Fees</label>
-                <input id="fees" type="number" class="form-control" formControlName="appointmentFees">
+                <mat-form-field class="full-width">
+                  <mat-label>Appointment Fees</mat-label>
+                  <input matInput id="fees" type="number" formControlName="appointmentFees">
+                </mat-form-field>
                 <div *ngIf="appointmentForm.get('appointmentFees')?.invalid && (appointmentForm.get('appointmentFees')?.dirty || appointmentForm.get('appointmentFees')?.touched)">
                   <div *ngIf="appointmentForm.get('appointmentFees')?.errors?.['required']">Appointment fees are required</div>
                 </div>
@@ -93,8 +32,62 @@
             </div>
 
             <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <mat-label>Symptoms</mat-label>
+                  <mat-select formControlName="symptoms" multiple>
+                    <mat-option *ngFor="let symptom of symptomsOptions" [value]="symptom">{{ symptom }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div *ngIf="appointmentForm.get('symptoms')?.invalid && (appointmentForm.get('symptoms')?.dirty || appointmentForm.get('symptoms')?.touched)">
+                  <div *ngIf="appointmentForm.get('symptoms')?.errors?.['required']">At least one symptom is required</div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <mat-label>Appointment Date</mat-label>
+                  <input matInput id="appointmentDate" placeholder="yyyy-mm-dd" formControlName="appointmentDate" [matDatepicker]="picker">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div *ngIf="appointmentForm.get('appointmentDate')?.invalid && (appointmentForm.get('appointmentDate')?.dirty || appointmentForm.get('appointmentDate')?.touched)">
+                  <div *ngIf="appointmentForm.get('appointmentDate')?.errors?.['required']">Appointment date is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
               <div class="col-md-12">
-                <button type="submit" class="btn btn-primary" [disabled]="appointmentForm.invalid">Add New Appointment</button>
+                <label>Select Appointment Time</label>
+                <mat-radio-group formControlName="appointmentTime" class="full-width">
+                  <div class="form-group row d-flex flex-wrap">
+                    <ng-container *ngFor="let time of appointmentTimes; let i = index">
+                      <div id="time{{i+1}}" class="col-6 col-md-3 border appointment-time">
+                        <mat-radio-button [value]="time">{{ time }}</mat-radio-button>
+                      </div>
+                    </ng-container>
+                  </div>
+                </mat-radio-group>
+                <div *ngIf="appointmentForm.get('appointmentTime')?.invalid && (appointmentForm.get('appointmentTime')?.dirty || appointmentForm.get('appointmentTime')?.touched)">
+                  <div *ngIf="appointmentForm.get('appointmentTime')?.errors?.['required']">Appointment time is required</div>
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="row">
+              <div class="col-md-12 mt-4">
+                <mat-form-field class="full-width">
+                  <mat-label>Note</mat-label>
+                  <textarea matInput id="note" formControlName="note"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <button mat-raised-button color="primary" type="submit" [disabled]="appointmentForm.invalid">Add New Appointment</button>
               </div>
             </div>
           </form>

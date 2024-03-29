@@ -9,9 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AppointmentComponent {
   appointmentForm!: FormGroup;
   doctors: any[] = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
-  patients: any[] = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
   options: string[] = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
-  symtomsOptions: string[] = [];
+  symptomsOptions: string[] = ['Fever', 'Cough', 'Headache', 'Fatigue'];
   appointmentTimes: string[] = [
     '8.30 to 9.00 am',
     '9.00 to 9.30 am',
@@ -30,7 +29,6 @@ export class AppointmentComponent {
   constructor(private fb: FormBuilder) {
     this.appointmentForm = this.fb.group({
       doctorId: ['', Validators.required],
-      patientId: ['', Validators.required],
       symptoms: ['', Validators.required],
       appointmentDate: ['', Validators.required],
       appointmentTime: ['', Validators.required],
