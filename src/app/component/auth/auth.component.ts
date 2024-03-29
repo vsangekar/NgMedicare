@@ -43,7 +43,8 @@ export class AuthComponent implements OnInit {
      
       },
       (error) => {
-        this.toastrNotificationService.showError("Incorrect UserName or Password", "Error");
+        console.log(error);
+        this.toastrNotificationService.showError(error?.error?.message, "Error");
       }
     );
   }

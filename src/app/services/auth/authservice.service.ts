@@ -16,11 +16,10 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     if (isPlatformBrowser(this.platformId)) {
-      // Check if token is present in local storage
       const token = localStorage.getItem('token');
-      return !!token; // Return true if token exists, false otherwise
+      return !!token; 
     }
-    return false; // Return false if not in browser platform
+    return false;
   }
 }
 
