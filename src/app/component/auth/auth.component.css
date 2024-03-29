@@ -54,7 +54,7 @@
   }
   
   a {
-    color: #33a532;
+    color: #323f32;
     text-decoration: none;
   }
   
@@ -118,6 +118,10 @@
   }
   .fas.fa-eye {
     color: #939e96; 
+  }
+
+  .linkcss{
+    font-weight: 520;
   }
 
   @media only screen and (max-width: 768px) {
