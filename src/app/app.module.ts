@@ -25,6 +25,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { AppointmentListComponent } from './component/appointment/appointment-list/appointment-list/appointment-list.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -36,7 +43,8 @@ import { MatRadioModule } from '@angular/material/radio';
     SidenavComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    AppointmentListComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +63,13 @@ import { MatRadioModule } from '@angular/material/radio';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule ,
-    MatRadioModule
+    MatRadioModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule
     
   ],
   providers: [

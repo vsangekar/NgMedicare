@@ -7,6 +7,7 @@ import { AuthLayoutComponent } from './component/auth-layout/auth-layout.compone
 import { MainLayoutComponent } from './component/main-layout/main-layout.component';
 import { RouteguardService } from './services/gaurd/routeguard.service';
 import { AppointmentComponent } from './component/appointment/appointment/appointment.component';
+import { AppointmentListComponent } from './component/appointment/appointment-list/appointment-list/appointment-list.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent, canActivate: [RouteguardService] },
-      { path: 'appointment', component: AppointmentComponent }
+      { path: 'appointment', component: AppointmentComponent },
+      { path: 'appointment-list', component: AppointmentListComponent },
     ]
   },
 ];

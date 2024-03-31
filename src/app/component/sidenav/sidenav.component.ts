@@ -18,7 +18,7 @@ export class SidenavComponent {
       number:'2',
       name:'Appointment',
       icon: 'fa-solid fa-user',
-      link:'/appointment',
+      link:'/appointment-list',
     },
   ]
 }

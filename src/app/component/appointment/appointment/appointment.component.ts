@@ -48,7 +48,6 @@ export class AppointmentComponent {
   }
   onSubmit() {
     if (this.appointmentForm.valid) {
-      // Submit the form data
       console.log(this.appointmentForm.value);
     }
   }
