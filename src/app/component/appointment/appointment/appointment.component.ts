@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DoctordropdownService } from '../../../services/dropdown/doctor/doctordropdown.service';
 
 @Component({
   selector: 'app-appointment',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AppointmentComponent {
   appointmentForm!: FormGroup;
-  doctors: any[] = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
+  doctors: any[] = [];
   options: string[] = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
   symptomsOptions: string[] = ['Fever', 'Cough', 'Headache', 'Fatigue'];
   appointmentTimes: string[] = [
@@ -26,7 +27,9 @@ export class AppointmentComponent {
     '7.00 to 7.30 pm'
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private doctordrp: DoctordropdownService) {
+    this.doctordrp = doctordrp;
+
     this.appointmentForm = this.fb.group({
       doctorId: ['', Validators.required],
       symptoms: ['', Validators.required],
@@ -34,6 +37,13 @@ export class AppointmentComponent {
       appointmentTime: ['', Validators.required],
       note: [''],
       appointmentFees: ['', Validators.required]
+    });
+  }
+
+  ngOnInit(): void {
+    debugger;
+    this.doctordrp.getdoctors().subscribe((data: any) => {
+      this.doctors = data.map((doctor: { doctorName: any; }) => doctor.doctorName);
     });
   }
   onSubmit() {
