@@ -32,7 +32,7 @@ export class AuthComponent implements OnInit {
       password: ['Vikrant@1234', Validators.required],
     });
     google.accounts.id.initialize({
-      client_id: '342315316273-nudbl18k46g2a2ajd97071m2qutderop.apps.googleusercontent.com',
+      client_id: '685533424375-hc7e27mdip34to87qdkqv6mbgm63qvfr.apps.googleusercontent.com',
       auto_select: false,
       cancel_on_tap_outside: true,
       prompt: 'consent',
