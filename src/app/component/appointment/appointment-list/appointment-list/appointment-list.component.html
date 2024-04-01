@@ -2,7 +2,7 @@
 <div class="appointment-container mat-elevation-z8">
     <h2 class="table-heading">Appointment List</h2>
     <div class="button-container">
-        <button mat-flat-button color="primary">Add Appointment</button>
+      <button mat-flat-button color="primary" (click)="openAppointmentForm()">Add Appointment</button>
     </div>
     <mat-table #table [dataSource]="dataSource">
   

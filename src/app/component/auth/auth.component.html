@@ -26,7 +26,7 @@
         <div class="card">
           <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-              <mat-form-field appearance="fill">
+              <mat-form-field id="emailinp" appearance="fill">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" class="emailcss" formControlName="email" placeholder="Enter email">
                 <mat-error *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
@@ -34,10 +34,10 @@
                   <div *ngIf="loginForm.get('email')?.hasError('email')">Please enter a valid email</div>
                 </mat-error>
               </mat-form-field>
-      
+              
               <mat-form-field appearance="fill">
                 <mat-label>Password</mat-label>
-                <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password">
+                <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" style="width: 100%;">
                 <button mat-icon-button matSuffix (click)="toggleShowPassword()" type="button" aria-label="Toggle password visibility">
                   <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
                 </button>
@@ -45,6 +45,7 @@
                   <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
                 </mat-error>
               </mat-form-field>
+              
       
               <div class="form-group">
                 <a routerLink="/forgot-password">Forgot Password?</a>

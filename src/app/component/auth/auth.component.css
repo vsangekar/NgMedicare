@@ -58,6 +58,11 @@
     width:20rem
   }
   
+#emailinp{
+  width: 248px !important;
+}
+
+
   .text-danger {
     color: #e3342f;
     font-size: 0.875rem;
@@ -172,6 +177,13 @@
     position: relative;
     box-sizing: border-box;
   }  
+
+  .custom-mat-form-field {
+    width: 100%;
+  }
+
+
+
   @media only screen and (max-width: 768px) {
     .card {
       float: none;

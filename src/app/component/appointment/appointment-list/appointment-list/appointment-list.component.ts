@@ -1,7 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AppointmentComponent } from '../../appointment/appointment.component';
 
 @Component({
   selector: 'app-appointment-list',
@@ -9,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrl: './appointment-list.component.css'
 })
 export class AppointmentListComponent {
+constructor(public dialog: MatDialog){}
 deleteAppointment: any;
 editAppointment(_t59: any) {
 throw new Error('Method not implemented.');
@@ -19,19 +22,16 @@ throw new Error('Method not implemented.');
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  /**
-   * Set the sort after the view init since this component will
-   * be able to query its view for the initialized sort.
-   */
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  /**
-   * Set the paginator after the view init since this component will
-   * be able to query its view for the initialized paginator.
-   */
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  openAppointmentForm()
+  {
+    this.dialog.open(AppointmentComponent);
   }
   
 }
