@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth/authservice.service';
 import { Router } from '@angular/router';
 import { ToastrNotificationService } from '../../services/toastr/toastr-notification.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { METHODS } from 'node:http';
 
 @Component({
   selector: 'app-auth',
@@ -37,7 +38,8 @@ export class AuthComponent implements OnInit {
       cancel_on_tap_outside: true,
       prompt: 'consent',
       callback: (resp: any) => {
-        //this.handlelogin(resp);
+        //this.handlelogin(resp); complete this code
+
         console.log(resp);
       }
     });
