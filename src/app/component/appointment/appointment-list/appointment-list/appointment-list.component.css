@@ -35,9 +35,11 @@
   
   .table-heading {
     text-align: center;
-    color: green;
+    color: #3f51b5;
     font-size: 24px; /* Adjust font size as needed */
     margin-top: 5px;
     margin-left: 2rem;
     margin-right: 2rem;
+    font-weight: 700;
+    text-align: center;
   }

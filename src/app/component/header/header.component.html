@@ -1,21 +1,21 @@
-<nav class="navbar navbar-expand navbg px-2">
-    <div class="side-nav-button p-2 me-3 text-light" (click)="SideNavToggled()">
-        <i class="fas fa-bars"></i>
-    </div>
-    <label class="px-4" style="color:azure" href="#">Medicare</label>
-    <div class="navbar-collapse">
-    </div>
-
-    <div class="profile-logo dropstart">
-        <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
-            Vikrant
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" (click)="open(content)">Change password</a></li>
-            <a class="dropdown-item" (click)="logout()">Logout</a>
-        </ul>
-    </div>
-</nav>
+<mat-toolbar color="primary">
+  <button mat-icon-button class="side-nav-button" (click)="SideNavToggled()">
+      <mat-icon>menu</mat-icon>
+  </button>
+  <span class="px-4" style="color:azure">Medicare</span>
+  <span class="caret"></span>
+  <span class="spacer"></span>
+  <div class="navbar-collapse m-3">
+  </div>
+  <div mat-menu-item [matMenuTriggerFor]="menu">
+      <span style="color:azure">Setting</span>
+      <mat-icon>arrow_drop_down</mat-icon>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="open(content)">Change password</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+  </div>
+</mat-toolbar>
 <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Change Password</h4>
@@ -63,6 +63,6 @@
       </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); changePassword(passwordForm.value)" [disabled]="passwordForm.invalid">Submit</button>
+        <button type="button" class="btn btn-primary" (click)="modal.close('Save click'); changePassword(passwordForm.value)" [disabled]="passwordForm.invalid">Submit</button>
     </div>
     </ng-template>

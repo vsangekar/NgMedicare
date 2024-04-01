@@ -9,10 +9,16 @@ nav{
     font: size 1.5em;
     cursor:pointer;
 }
-.navbg
-{
-    background: #56a755;
-}
+
 .modal-header{
-    background-color:#cbf1ca
+    background-color:#3f51b5
+}
+.px-4 {
+    padding-right: 62.5rem !important;
+    padding-left: 1.5rem !important;
+}
+
+.modal-title{
+    color:azure;
+    font-size: 18px;
 }

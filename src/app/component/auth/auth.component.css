@@ -8,6 +8,7 @@
     float: right;
     margin-right: 3rem;
     margin-top: 7rem;
+    background-color: #c0d8fd; 
   }
   body {
     background-color: #f0f2f5; 
@@ -24,7 +25,7 @@
   
   .card-title {
     font-size: 1.5rem;
-    color: #33a532;
+    color: #3432a5;
     margin-bottom: 1rem;
     text-align: center;
   }
@@ -40,12 +41,21 @@
     margin-bottom: 0.5rem;
   }
   
-  .input[type=email], .input[type=password], .form-control {
+   .input[type=password], .form-control {
     font-size: 1rem;
     padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 0.5rem;
+  }
+
+  .input[type=email], .form-control {
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    width:20rem
   }
   
   .text-danger {
@@ -75,12 +85,12 @@
   }
   
   .btn-primary {
-    background-color: #33a532;
+    background-color: #3f51b5;
     color: white;
   }
   
   .btn-primary:hover {
-    background-color: #289728;
+    background-color: #3f51b5;
   }
   
   .btn-danger {
@@ -92,38 +102,76 @@
     background-color: #cc1f1a;
   }
   #btnRegister {
-    color: blue; /* Change link color to blue */
-    text-decoration: none; /* Remove underline */
+    color: blue; 
+    text-decoration: none; 
   }
   
   #btnRegister:hover {
     text-decoration: underline; /* Underline on hover */
-    color: darkblue; /* Change color on hover */
+    color: #3f51b5; /* Change color on hover */
   }
 
   .separator {
     margin-top: 1rem;
     text-align: center; /* Align text horizontally */
     color: #423434; /* Text color */
-  }
-  .googlebtn {
-    background-color: #f9f9f9; /* Background color */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); 
-    border-radius: 8px;
-  }
-  .btneye{
-    background-color: #ffffff; /* Background color */
-    height: 3.1rem;
-
-  }
-  .fas.fa-eye {
-    color: #939e96; 
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   .linkcss{
     font-weight: 520;
   }
+  .card {
+    margin-top: 90px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .separator {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
 
+  
+  #btnLogin,
+  #btnRegister {
+    margin-top: 10px;
+  }
+  
+  /* Styles for error messages */
+  .mat-error {
+    font-size: 12px;
+    color: red;
+    margin-top: 4px;
+  }
+  #btnLogin{
+    width: 100%;
+  }
+
+  #google_btn {
+    border: none;
+    margin-left: 15px;
+  }
+
+  .mat-mdc-form-field-infix {
+    flex: auto;
+    min-width: 0;
+    width: 192px;
+    position: relative;
+    box-sizing: border-box;
+  }  
   @media only screen and (max-width: 768px) {
     .card {
       float: none;

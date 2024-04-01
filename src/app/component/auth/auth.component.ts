@@ -44,9 +44,8 @@ export class AuthComponent implements OnInit {
     google.accounts.id.renderButton(document.getElementById("google_btn"), {
       theme: 'filled_white',
       size: 'large',
-      shape: 'rectangle',
       width: '100%',
-      maxWidth: '500px',
+      maxWidth: '500px'
     });
   }
   
