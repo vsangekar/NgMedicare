@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ChangepasswordService } from '../../services/password/changepassword.service';
 import { LogoutService } from '../../services/logout/logout.service';
 import { Router } from '@angular/router';
+declare let google: any;
 
 @Component({
   selector: 'app-header',
@@ -105,6 +106,7 @@ export class HeaderComponent implements OnInit {
     this.logoutservice.logout().subscribe(
       () => {
         localStorage.removeItem('token');
+        google.accounts.id.disableAutoSelect();
         this.route.navigateByUrl('/');
       },
       (error) => {

@@ -1,3 +1,4 @@
+declare let google: any;
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -30,7 +31,25 @@ export class AuthComponent implements OnInit {
       email: ['Vikrant@gmail.com', [Validators.required, Validators.email]],
       password: ['Vikrant@1234', Validators.required],
     });
+    google.accounts.id.initialize({
+      client_id: '342315316273-nudbl18k46g2a2ajd97071m2qutderop.apps.googleusercontent.com',
+      auto_select: false,
+      cancel_on_tap_outside: true,
+      prompt: 'consent',
+      callback: (resp: any) => {
+        //this.handlelogin(resp);
+        console.log(resp);
+      }
+    });
+    google.accounts.id.renderButton(document.getElementById("google_btn"), {
+      theme: 'filled_white',
+      size: 'large',
+      shape: 'rectangle',
+      width: '100%',
+      maxWidth: '500px',
+    });
   }
+  
 
   onSubmit() {
     this.authService.onLogin(this.loginForm.value).subscribe(
