@@ -1,13 +1,15 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
+import { environment } from '../../../enviroment/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChangepasswordService {
   private token: string | null; 
-
+  private readonly baseURL = environment.ServerUrl
+  
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem('token'); 
   }
@@ -18,7 +20,7 @@ export class ChangepasswordService {
     });
     const options = { headers };
   
-    return this.http.post('https://api.vikrantmedicare.co.in/api/auth/change-password', obj, options)
+    return this.http.post(`${this.baseURL}/api/auth/change-password`, obj, options)
   
   }
 }

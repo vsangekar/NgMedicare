@@ -2,13 +2,14 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../../../enviroment/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DoctordropdownService {
   token: string | null;
-  
+  private readonly baseURL = environment.ServerUrl
   constructor(private http: HttpClient) { 
     this.token = localStorage.getItem('token'); 
   }
@@ -19,7 +20,7 @@ export class DoctordropdownService {
     });
     const options = { headers };
 
-    return this.http.get('https://api.vikrantmedicare.co.in/api/Doctor', options).pipe(
+    return this.http.get(`${this.baseURL}/api/Doctor`, options).pipe(
       catchError(this.handleError)
     );
   }
