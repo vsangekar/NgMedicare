@@ -1,5 +1,5 @@
 export const environment = {
     //Local Environment
-   ServerUrl: 'http://localhost:4200',
+   ServerUrl: 'https://api.vikrantmedicare.co.in',
   
 }

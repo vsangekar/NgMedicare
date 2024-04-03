@@ -1,5 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../enviroment/enviroment';
 
@@ -9,15 +9,11 @@ import { environment } from '../../../../enviroment/enviroment';
 export class CreateAppointmentService {
 
   constructor(private http: HttpClient) { }
-  private readonly baseURL = environment.ServerUrl
+
+  private readonly baseURL = environment.ServerUrl;
+
   createAppointment(appointmentData: any): Observable<any> {
     const apiUrl = `${this.baseURL}/api/Appointment`;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    const options = { headers };
-
-    return this.http.post(apiUrl, appointmentData, options);
+    return this.http.post(apiUrl, appointmentData);
   }
 }
-

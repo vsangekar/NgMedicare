@@ -13,7 +13,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { AuthLayoutComponent } from './component/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './component/main-layout/main-layout.component';
-import { DashboardInterceptor } from './intercepter/dashboard/dashboard.interceptor';
+import { loaderInterceptor } from './intercepter/loader/loader.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
@@ -35,6 +35,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AuthInterceptorService } from './intercepter/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -81,8 +82,13 @@ import { MatDialogModule } from '@angular/material/dialog';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: DashboardInterceptor,
+      useClass: loaderInterceptor,
       multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
     },
     provideHttpClient(withFetch()),
     provideAnimationsAsync() 
