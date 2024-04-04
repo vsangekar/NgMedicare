@@ -8,6 +8,7 @@ import { MainLayoutComponent } from './component/main-layout/main-layout.compone
 import { RouteguardService } from './services/gaurd/routeguard.service';
 import { AppointmentComponent } from './component/appointment/appointment/appointment.component';
 import { AppointmentListComponent } from './component/appointment/appointment-list/appointment-list/appointment-list.component';
+import { LandingComponent } from './component/landing/landing/landing.component';
 
 
 const routes: Routes = [
@@ -15,9 +16,10 @@ const routes: Routes = [
      path: '',
     component: AuthLayoutComponent,
     children: [
-      { path: '', redirectTo: 'auth', pathMatch: 'full' },
+      { path: '', redirectTo: 'landing', pathMatch: 'full' },
       { path: 'auth', component: AuthComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'landing', component: LandingComponent },
     ]
   },
   {

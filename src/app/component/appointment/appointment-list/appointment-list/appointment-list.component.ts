@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AppointmentComponent } from '../../appointment/appointment.component';
+import { CreateAppointmentService } from '../../../../services/appointment/appointment/create-appointment.service';
 
 @Component({
   selector: 'app-appointment-list',
@@ -11,13 +12,16 @@ import { AppointmentComponent } from '../../appointment/appointment.component';
   styleUrl: './appointment-list.component.css'
 })
 export class AppointmentListComponent {
-constructor(public dialog: MatDialog){}
+  dataSource = new MatTableDataSource<Element>();
+constructor(public dialog: MatDialog, private getAppoiment: CreateAppointmentService){
+ this.dataSource =new MatTableDataSource<Element>();
+}
 deleteAppointment: any;
 editAppointment(_t59: any) {
 throw new Error('Method not implemented.');
 }
   displayedColumns = ['doctor', 'fees', 'symtoms', 'date','time','note', 'actions'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  
 
   @ViewChild(MatSort)
   sort!: MatSort;
@@ -33,6 +37,13 @@ throw new Error('Method not implemented.');
   {
     this.dialog.open(AppointmentComponent);
   }
+
+  getAppointmentData() {
+    this.getAppoiment.getAppointment().subscribe((response: any) => {
+      console.log(response);
+      this.dataSource.data = response;
+    });
+  }
   
 }
 export interface Element {
@@ -45,7 +56,3 @@ export interface Element {
   edit?: boolean; // Optional property for edit functionality
   delete?: boolean; 
 }
-
-const ELEMENT_DATA: Element[] = [
-  {doctor: "test", fees: 30, symtoms: "testSymtoms", date:"32/1/2024", time:"9 am",note:"thanksYou",edit:true,delete:true},
-];

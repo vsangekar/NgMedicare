@@ -1,35 +1,79 @@
-.welcome-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* General Styles */
+body {
+   font-family: Arial, sans-serif;
+   background-color: #f5f5f5;
+   margin: 0;
+   padding: 0;
  }
  
- .welcome-header {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+ .card-row {
+   display: flex;
+   justify-content: center;
+   margin-bottom: 20px;
  }
  
- .welcome-message {
-    font-size: 16px;
-    line-height: 1.5;
-    color: #666;
+ .card {
+   margin: 10px;
+   border-radius: 8px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   transition: box-shadow 0.3s ease;
+   width: 200px;
+   text-align: center;
  }
  
- .focus-message {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-top: 20px;
+ .card:hover {
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
  }
  
- .focus-list {
-    margin-left: 20px;
-    list-style-type: disc;
-    color: #666;
+ .card-content {
+   padding: 20px;
+   text-align: center;
  }
  
+ h2 {
+   margin-top: 0;
+   margin-bottom: 10px;
+   color: #333;
+ }
  
+ p {
+   margin: 0;
+   font-size: 24px;
+   font-weight: bold;
+   color: #555;
+ }
+ 
+ /* Chart Container Styles */
+ .chart-container {
+   flex: 1;
+   margin: 10px;
+   padding: 20px;
+   background-color: #fff;
+   border-radius: 8px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .chart-container2 {
+   margin: 20px auto;
+   padding: 20px;
+   max-width: 800px;
+   background-color: #fff;
+   border-radius: 8px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
+ 
+ /* Responsive Styles */
+ @media (max-width: 768px) {
+   .card-row {
+     flex-wrap: wrap;
+   }
+ 
+   .card {
+     flex: 1 1 40%;
+   }
+ 
+   .chart-container {
+     flex: 1 1 100%;
+     margin: 10px 0;
+   }
+ }

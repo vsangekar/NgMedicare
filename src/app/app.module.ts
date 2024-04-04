@@ -36,6 +36,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthInterceptorService } from './intercepter/auth/auth.interceptor';
+import { MatCardModule } from '@angular/material/card';
+import { LandingComponent } from './component/landing/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { AuthInterceptorService } from './intercepter/auth/auth.interceptor';
     AuthLayoutComponent,
     MainLayoutComponent,
     AppointmentComponent,
-    AppointmentListComponent
+    AppointmentListComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ import { AuthInterceptorService } from './intercepter/auth/auth.interceptor';
     MatTooltipModule,
     MatToolbarModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
     
   ],
   providers: [

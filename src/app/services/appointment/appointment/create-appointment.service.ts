@@ -16,4 +16,9 @@ export class CreateAppointmentService {
     const apiUrl = `${this.baseURL}/api/Appointment`;
     return this.http.post(apiUrl, appointmentData);
   }
+
+  getAppointment(){
+    const apiUrl = `${this.baseURL}/api/Appointment`;
+    return this.http.get(apiUrl);
+  }
 }

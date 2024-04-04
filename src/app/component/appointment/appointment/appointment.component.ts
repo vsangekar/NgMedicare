@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DoctordropdownService } from '../../../services/dropdown/doctor/doctordropdown.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CreateAppointmentService } from '../../../services/appointment/appointment/create-appointment.service';
 
 @Component({
   selector: 'app-appointment',
@@ -28,7 +29,11 @@ export class AppointmentComponent {
     '7.00 to 7.30 pm'
   ];
 
-  constructor(private fb: FormBuilder, private doctordrp: DoctordropdownService,private dialogRef: MatDialogRef<AppointmentComponent>) {
+  constructor(private fb: FormBuilder, 
+    private doctordrp: DoctordropdownService,
+    private dialogRef: MatDialogRef<AppointmentComponent>,
+    private createAppointment : CreateAppointmentService
+    ) {
     this.doctordrp = doctordrp;
 
     this.appointmentForm = this.fb.group({
@@ -49,7 +54,9 @@ export class AppointmentComponent {
   }
   onSubmit() {
     if (this.appointmentForm.valid) {
-      console.log(this.appointmentForm.value);
+      this.createAppointment.createAppointment(this.appointmentForm).subscribe((response)=>{
+        
+      })
     }
   }
 

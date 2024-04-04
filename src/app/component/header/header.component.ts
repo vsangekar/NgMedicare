@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ChangepasswordService } from '../../services/password/changepassword.service';
 import { LogoutService } from '../../services/logout/logout.service';
 import { Router } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 declare let google: any;
 
 @Component({
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
   confirmPassword: any;
   passwordForm: FormGroup;
   showOldPassword: any;
+  userName: string | null = null;
   constructor(private toastrNotificationService: ToastrNotificationService, private changepasswordservice: ChangepasswordService, private logoutservice: LogoutService, private route: Router){
     this.passwordForm = new FormGroup({
       newPassword: new FormControl('', Validators.required),
@@ -35,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit():void{
-
+      this.userName = localStorage.getItem('userName');
   }
 
   SideNavToggled(){
