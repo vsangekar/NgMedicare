@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DoctordropdownService } from '../../../services/dropdown/doctor/doctordropdown.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CreateAppointmentService } from '../../../services/appointment/appointment/create-appointment.service';
+import { ToastrNotificationService } from '../../../services/toastr/toastr-notification.service';
 
 @Component({
   selector: 'app-appointment',
@@ -32,7 +33,8 @@ export class AppointmentComponent {
   constructor(private fb: FormBuilder, 
     private doctordrp: DoctordropdownService,
     private dialogRef: MatDialogRef<AppointmentComponent>,
-    private createAppointment : CreateAppointmentService
+    private createAppointment : CreateAppointmentService,
+    private toastr: ToastrNotificationService,
     ) {
     this.doctordrp = doctordrp;
 
@@ -52,13 +54,30 @@ export class AppointmentComponent {
       this.doctors = data.map((doctor: { doctorName: any; }) => doctor.doctorName);
     });
   }
+  // onSubmit() {
+  //   if (this.appointmentForm.valid) {
+  //     this.createAppointment.createAppointment(this.appointmentForm).subscribe((response)=>{
+  //       this.toastr.showInfo("Your Appointment is successfully booked","success");
+  //     })
+  //   }
+  // }
+
   onSubmit() {
     if (this.appointmentForm.valid) {
-      this.createAppointment.createAppointment(this.appointmentForm).subscribe((response)=>{
-        
-      })
+      const formData = this.appointmentForm.value; // Extract the form data
+      this.createAppointment.createAppointment(formData).subscribe(
+        response => {
+          this.toastr.showInfo("Your Appointment is successfully booked", "Success");
+        },
+        error => {
+          // Handle error response
+          console.error('Error creating appointment', error);
+          // You may want to show an error message to the user
+        }
+      );
     }
   }
+  
 
   closeDialog() {
     this.dialogRef.close();

@@ -40,7 +40,6 @@ throw new Error('Method not implemented.');
 
   getAppointmentData() {
     this.getAppoiment.getAppointment().subscribe((response: any) => {
-      console.log(response);
       this.dataSource.data = response;
     });
   }
@@ -53,6 +52,6 @@ export interface Element {
   date: string;
   time:string;
   note:string;
-  edit?: boolean; // Optional property for edit functionality
+  edit?: boolean; 
   delete?: boolean; 
 }
