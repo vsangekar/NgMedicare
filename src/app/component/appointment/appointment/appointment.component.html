@@ -9,8 +9,8 @@
         <div class="col-md-6">
           <mat-form-field class="full-width">
             <mat-label>Doctor</mat-label>
-            <mat-select formControlName="doctorId">
-              <mat-option *ngFor="let doctor of doctors" [value]="doctor">{{ doctor }}</mat-option>
+            <mat-select formControlName="doctorId" (selectionChange)="selectDoctorById($event.value)">
+              <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">{{ doctor.name }}</mat-option>
             </mat-select>
           </mat-form-field>
           <div *ngIf="appointmentForm.get('doctorId')?.invalid && (appointmentForm.get('doctorId')?.dirty || appointmentForm.get('doctorId')?.touched)">
@@ -32,13 +32,13 @@
       <div class="row">
         <div class="col-md-6">
           <mat-form-field class="full-width">
-            <mat-label>Symptoms</mat-label>
-            <mat-select formControlName="symptoms" multiple>
-              <mat-option *ngFor="let symptom of symptomsOptions" [value]="symptom">{{ symptom }}</mat-option>
+            <mat-label>symtoms</mat-label>
+            <mat-select formControlName="symtoms" multiple>
+              <mat-option *ngFor="let symtoms of symptomsOptions" [value]="symtoms">{{ symtoms }}</mat-option>
             </mat-select>
           </mat-form-field>
-          <div *ngIf="appointmentForm.get('symptoms')?.invalid && (appointmentForm.get('symptoms')?.dirty || appointmentForm.get('symptoms')?.touched)">
-            <div *ngIf="appointmentForm.get('symptoms')?.errors?.['required']">At least one symptom is required</div>
+          <div *ngIf="appointmentForm.get('symtoms')?.invalid && (appointmentForm.get('symtoms')?.dirty || appointmentForm.get('symptoms')?.touched)">
+            <div *ngIf="appointmentForm.get('symtoms')?.errors?.['required']">At least one symtoms is required</div>
           </div>
         </div>
 

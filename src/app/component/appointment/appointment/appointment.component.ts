@@ -40,7 +40,7 @@ export class AppointmentComponent {
 
     this.appointmentForm = this.fb.group({
       doctorId: ['', Validators.required],
-      symptoms: ['', Validators.required],
+      symtoms: ['', Validators.required],
       appointmentDate: ['', Validators.required],
       appointmentTime: ['', Validators.required],
       note: [''],
@@ -49,34 +49,46 @@ export class AppointmentComponent {
   }
 
   ngOnInit(): void {
-    debugger;
+    this.loadDoctors(); // Call the function to load doctors
+  }
+
+  loadDoctors(): void {
     this.doctordrp.getdoctors().subscribe((data: any) => {
-      this.doctors = data.map((doctor: { doctorName: any; }) => doctor.doctorName);
+      this.doctors = data.map((doctor: { doctorName: any; doctorId: any; }) => ({
+        name: doctor.doctorName,
+        id: doctor.doctorId
+      }));
     });
   }
-  // onSubmit() {
-  //   if (this.appointmentForm.valid) {
-  //     this.createAppointment.createAppointment(this.appointmentForm).subscribe((response)=>{
-  //       this.toastr.showInfo("Your Appointment is successfully booked","success");
-  //     })
-  //   }
-  // }
 
+  selectDoctorById(doctorId: any): void {
+    const selectedDoctor = this.doctors.find(doctor => doctor.id === doctorId);
+    if (selectedDoctor) {
+      this.appointmentForm.patchValue({
+        doctorId: selectedDoctor.id
+      });
+    }
+  }
   onSubmit() {
     if (this.appointmentForm.valid) {
-      const formData = this.appointmentForm.value; // Extract the form data
+      const formData = this.appointmentForm.value;
+      if (formData.appointmentDate instanceof Date) {
+        formData.appointmentDate = formData.appointmentDate.toISOString();
+      }
+      formData.symtoms = formData.symtoms.join(', ');
+      formData.appointmentFees = Number(formData.appointmentFees);
+      formData.doctorId = formData.doctorId;
       this.createAppointment.createAppointment(formData).subscribe(
         response => {
           this.toastr.showInfo("Your Appointment is successfully booked", "Success");
         },
         error => {
-          // Handle error response
           console.error('Error creating appointment', error);
-          // You may want to show an error message to the user
         }
       );
     }
   }
+  
   
 
   closeDialog() {
