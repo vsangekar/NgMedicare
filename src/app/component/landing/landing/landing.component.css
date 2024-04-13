@@ -122,13 +122,35 @@ nav ul li a {
 }
 
 .footer-section ul li a {
-  color: #ffffff; /* Default link color */
+  color: #ffffff; 
   text-decoration: none;
 }
 
 .footer-bottom {
   text-align: center;
   margin-top: 20px;
+}
+
+.map-container {
+  position: relative;
+  padding-bottom: 25.25%; 
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    padding-bottom: 100%; 
+  }
 }
 
 
