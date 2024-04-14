@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AppointmentComponent } from '../../appointment/appointment.component';
 import { CreateAppointmentService } from '../../../../services/appointment/appointment/create-appointment.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-appointment-list',
@@ -14,7 +15,9 @@ import { CreateAppointmentService } from '../../../../services/appointment/appoi
 export class AppointmentListComponent {
   dataSource = new MatTableDataSource<Element>();
 constructor(public dialog: MatDialog, private getAppoiment: CreateAppointmentService){
+  debugger;
  this.dataSource =new MatTableDataSource<Element>();
+ this.getAppointmentData();
 }
 deleteAppointment: any;
 editAppointment(_t59: any) {
@@ -39,9 +42,12 @@ throw new Error('Method not implemented.');
   }
 
   getAppointmentData() {
+    debugger;
     this.getAppoiment.getAppointment().subscribe((response: any) => {
       this.dataSource.data = response;
+      console.log(response);
     });
+    
   }
   
 }

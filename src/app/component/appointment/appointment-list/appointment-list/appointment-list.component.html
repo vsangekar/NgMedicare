@@ -9,13 +9,13 @@
       <!-- Position Column -->
       <ng-container matColumnDef="doctor">
         <mat-header-cell *matHeaderCellDef> Doctor </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.doctor}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.doctorName}} </mat-cell>
       </ng-container>
   
       <!-- Name Column -->
       <ng-container matColumnDef="fees">
         <mat-header-cell *matHeaderCellDef> Appointment Fees </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.fees}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.appointmentFees}} </mat-cell>
       </ng-container>
   
       <!-- Weight Column -->
@@ -27,12 +27,12 @@
       <!-- Symbol Column -->
       <ng-container matColumnDef="date">
         <mat-header-cell *matHeaderCellDef> Appointment Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.appointmentDate}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="time">
         <mat-header-cell *matHeaderCellDef> Appointment Time </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.appointmentTime}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="note">
